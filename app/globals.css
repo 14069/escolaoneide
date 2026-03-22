@@ -1,26 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Work+Sans:wght@300;400;500;600;700&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #00113a;
+  --primary-container: #002366;
+  --secondary-container: #fcd400;
+  --secondary: #705d00;
+  --surface: #f8f9fa;
+  --surface-container: #edeeef;
+  --surface-container-low: #f3f4f5;
+  --surface-container-lowest: #ffffff;
+  --surface-ink: #191c1d;
+  --surface-muted: #444650;
+  --outline: #c5c6d2;
+  --primary-fixed-dim: #b3c5ff;
+  --secondary-fixed: #ffe16d;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top right, rgba(252, 212, 0, 0.14), transparent 28%),
+    linear-gradient(180deg, rgba(248, 249, 250, 1), rgba(243, 244, 245, 1));
+  color: var(--surface-ink);
+  font-family: "Work Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+code {
+  border-radius: 0.5rem;
+  background: rgba(0, 17, 58, 0.06);
+  padding: 0.12rem 0.4rem;
+}
+
+.font-headline {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.bg-primary {
+  background: var(--primary);
+}
+
+.bg-surface-container {
+  background: var(--surface-container);
+}
+
+.bg-surface-container-low {
+  background: var(--surface-container-low);
+}
+
+.bg-surface-container-lowest {
+  background: var(--surface-container-lowest);
+}
+
+.bg-secondary-container {
+  background: var(--secondary-container);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-on-primary {
+  color: #ffffff;
+}
+
+.text-secondary {
+  color: var(--secondary);
+}
+
+.text-secondary-fixed {
+  color: var(--secondary-fixed);
+}
+
+.text-on-secondary-container {
+  color: #6e5c00;
+}
+
+.text-on-surface-variant {
+  color: var(--surface-muted);
+}
+
+.text-primary-fixed-dim {
+  color: var(--primary-fixed-dim);
+}
+
+.glass-nav {
+  background: rgba(248, 249, 250, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.brand-mark {
+  background: linear-gradient(135deg, var(--primary), var(--primary-container));
+  box-shadow: 0 18px 35px rgba(0, 17, 58, 0.22);
+}
+
+.hero-panel {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+}
+
+.hero-orb::before,
+.hero-orb::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.hero-orb::before {
+  inset: auto -4rem -5rem auto;
+  width: 14rem;
+  height: 14rem;
+  background: rgba(252, 212, 0, 0.12);
+  filter: blur(20px);
+}
+
+.hero-orb::after {
+  inset: -4rem auto auto -3rem;
+  width: 11rem;
+  height: 11rem;
+  background: rgba(255, 255, 255, 0.06);
+  filter: blur(16px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.85rem;
+  background: var(--primary);
+  padding: 0.95rem 1.5rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  color: white;
+  transition: transform 180ms ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(197, 198, 210, 0.4);
+  background: var(--surface-container-lowest);
+  padding: 0.95rem 1.5rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  color: var(--primary);
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-1px);
+  background: var(--surface-container);
+}
+
+.shadow-soft {
+  box-shadow: 0 24px 60px rgba(0, 17, 58, 0.08);
+}
+
+.site-shell {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.copy-block p + p {
+  margin-top: 1rem;
 }
