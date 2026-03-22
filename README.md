@@ -72,6 +72,37 @@ npm run studio
    - opção de mostrar na home
 4. Publica o documento
 
+## Webhook de revalidação
+
+Para o site atualizar automaticamente depois de publicar ou editar um evento:
+
+1. Deixe o `SANITY_REVALIDATE_SECRET` configurado no ambiente do site.
+2. No Sanity Manage, abra `API > Webhooks`.
+3. Crie um webhook com estes valores:
+
+- URL: `https://SEU-DOMINIO/api/revalidate`
+- Method: `POST`
+- Trigger on: `create`, `update`, `delete`
+- Filter: `_type == "event"`
+- Drafts: desativado
+- HTTP header: `x-revalidate-secret: SEU_SANITY_REVALIDATE_SECRET`
+- Projection:
+
+```groq
+{
+  "slug": coalesce(after().slug.current, before().slug.current),
+  "previousSlug": select(
+    before().slug.current != after().slug.current => before().slug.current
+  )
+}
+```
+
+Depois disso, o webhook vai revalidar:
+
+- `/`
+- `/eventos`
+- `/eventos/[slug]`
+
 ## Observação importante
 
 Enquanto o Sanity não estiver configurado, o projeto usa eventos de exemplo para a interface continuar funcionando em modo demonstração.
