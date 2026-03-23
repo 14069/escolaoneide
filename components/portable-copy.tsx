@@ -12,16 +12,19 @@ export function PortableCopy({ body, fallbackBody }: PortableCopyProps) {
       <PortableText
         components={{
           block: {
-            normal: ({ children }) => <p>{children}</p>,
+            normal: ({ children }) => <p className="text-[1.02rem] leading-8 text-on-surface-variant">{children}</p>,
             h2: ({ children }) => (
-              <h2 className="font-headline text-2xl font-bold text-primary">{children}</h2>
+              <h2 className="pt-4 font-headline text-2xl font-bold text-primary">{children}</h2>
             ),
             h3: ({ children }) => (
-              <h3 className="font-headline text-xl font-bold text-primary">{children}</h3>
+              <h3 className="pt-2 font-headline text-xl font-bold text-primary">{children}</h3>
             ),
           },
           list: {
-            bullet: ({ children }) => <ul className="list-disc space-y-2 pl-5">{children}</ul>,
+            bullet: ({ children }) => <ul className="list-disc space-y-3 pl-6 text-[1.02rem] leading-8 text-on-surface-variant">{children}</ul>,
+          },
+          listItem: {
+            bullet: ({ children }) => <li className="pl-1">{children}</li>,
           },
         }}
         value={body}
@@ -32,7 +35,9 @@ export function PortableCopy({ body, fallbackBody }: PortableCopyProps) {
   return (
     <>
       {fallbackBody.map((paragraph) => (
-        <p key={paragraph}>{paragraph}</p>
+        <p className="text-[1.02rem] leading-8 text-on-surface-variant" key={paragraph}>
+          {paragraph}
+        </p>
       ))}
     </>
   );

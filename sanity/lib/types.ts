@@ -9,6 +9,7 @@ export interface EventSummary {
   eventDate: string;
   excerpt: string;
   location?: string;
+  instagramPostUrl?: string;
   coverImageUrl?: string | null;
   coverAlt?: string | null;
   galleryCount: number;

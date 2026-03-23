@@ -7,6 +7,7 @@ export const EVENT_FIELDS = groq`
   eventDate,
   excerpt,
   location,
+  instagramPostUrl,
   body,
   "showOnHome": coalesce(showOnHome, true),
   coverImage,

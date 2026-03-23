@@ -28,8 +28,10 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at top right, rgba(252, 212, 0, 0.14), transparent 28%),
-    linear-gradient(180deg, rgba(248, 249, 250, 1), rgba(243, 244, 245, 1));
+    radial-gradient(circle at top left, rgba(252, 212, 0, 0.18), transparent 20%),
+    radial-gradient(circle at 82% 12%, rgba(0, 35, 102, 0.12), transparent 23%),
+    radial-gradient(circle at bottom right, rgba(0, 17, 58, 0.08), transparent 26%),
+    linear-gradient(180deg, #fdfcf7 0%, #f4f6f8 42%, #eef1f5 100%);
   color: var(--surface-ink);
   font-family: "Work Sans", sans-serif;
 }
@@ -97,9 +99,10 @@ code {
 }
 
 .glass-nav {
-  background: rgba(248, 249, 250, 0.82);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(248, 249, 250, 0.84);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 10px 35px rgba(0, 17, 58, 0.05);
 }
 
 .brand-mark {
@@ -109,6 +112,12 @@ code {
 
 .hero-panel {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+}
+
+.section-tint {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(255, 255, 255, 0.46));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .hero-orb::before,
@@ -145,11 +154,15 @@ code {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 700;
   color: white;
-  transition: transform 180ms ease;
+  box-shadow: 0 14px 28px rgba(0, 17, 58, 0.14);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
+  box-shadow: 0 18px 34px rgba(0, 17, 58, 0.18);
 }
 
 .btn-secondary {
@@ -165,12 +178,16 @@ code {
   color: var(--primary);
   transition:
     background-color 180ms ease,
-    transform 180ms ease;
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .btn-secondary:hover {
   transform: translateY(-1px);
   background: var(--surface-container);
+  border-color: rgba(0, 17, 58, 0.1);
+  box-shadow: 0 14px 28px rgba(0, 17, 58, 0.08);
 }
 
 .shadow-soft {
@@ -185,4 +202,18 @@ code {
 
 .copy-block p + p {
   margin-top: 1rem;
+}
+
+.copy-block h2 + p,
+.copy-block h3 + p,
+.copy-block ul + p,
+.copy-block p + ul,
+.copy-block h2 + ul,
+.copy-block h3 + ul {
+  margin-top: 1rem;
+}
+
+.copy-block h2 + h3,
+.copy-block h3 + h2 {
+  margin-top: 0.75rem;
 }

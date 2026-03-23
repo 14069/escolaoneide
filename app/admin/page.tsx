@@ -52,7 +52,7 @@ export default async function AdminPage() {
                 <p className="text-sm font-bold text-secondary">Criar e editar</p>
                 <h2 className="mt-3 font-headline text-2xl font-bold text-primary">Publicações completas</h2>
                 <p className="mt-3 text-sm leading-7 text-on-surface-variant">
-                  Cadastre título, data, local, resumo, capa, galeria de fotos e conteúdo completo em cada evento.
+                  Cadastre título, data, local, resumo, capa, galeria de fotos, conteúdo completo e, se quiser, o link do post no Instagram.
                 </p>
               </article>
 
@@ -110,9 +110,10 @@ export default async function AdminPage() {
                   <li>1. Abra o painel e faça login normalmente.</li>
                   <li>2. Crie um novo <code>Evento</code>.</li>
                   <li>3. Preencha título, slug, data, local, resumo, capa e conteúdo.</li>
-                  <li>4. Se quiser destacar na home, mantenha a opção de exibição ativada.</li>
-                  <li>5. Clique em publicar.</li>
-                  <li>6. Volte para <code>/</code> e <code>/eventos</code> para conferir o resultado.</li>
+                  <li>4. Se o conteúdo já estiver no Instagram, adicione também o link do post.</li>
+                  <li>5. Se quiser destacar na home, mantenha a opção de exibição ativada.</li>
+                  <li>6. Clique em publicar.</li>
+                  <li>7. Volte para <code>/</code> e <code>/eventos</code> para conferir o resultado.</li>
                 </ol>
               </div>
             ) : null}

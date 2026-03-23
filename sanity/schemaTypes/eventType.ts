@@ -38,6 +38,16 @@ export const eventType = defineType({
       validation: (rule) => rule.required().min(24).max(220),
     }),
     defineField({
+      name: "instagramPostUrl",
+      title: "Link do post no Instagram",
+      type: "url",
+      description: "Opcional. Use quando a publicação também já estiver disponível no Instagram da escola.",
+      validation: (rule) =>
+        rule.uri({
+          scheme: ["http", "https"],
+        }),
+    }),
+    defineField({
       name: "coverImage",
       title: "Foto de capa",
       type: "image",

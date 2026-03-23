@@ -17,6 +17,7 @@ type SanityEventDoc = {
   eventDate: string;
   excerpt?: string;
   location?: string;
+  instagramPostUrl?: string;
   body?: PortableBlock[];
   showOnHome?: boolean;
   coverImage?: unknown;
@@ -56,6 +57,7 @@ function mapSanityEvent(doc: SanityEventDoc): EventPost {
     eventDate: doc.eventDate,
     excerpt: doc.excerpt ?? "Evento publicado pela administração do site.",
     location: doc.location,
+    instagramPostUrl: doc.instagramPostUrl,
     body: doc.body ?? [],
     fallbackBody: [],
     coverImageUrl,
