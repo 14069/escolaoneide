@@ -5,7 +5,7 @@ export const school = {
   instagramHandle: "@eti.araguatins",
   instagramUrl: "https://instagram.com/eti.araguatins",
   logoPath: "/school-assets/logo.jpg",
-  coverPath: "/school-assets/cover.png",
+  coverPath: "/school-assets/covercapa.png",
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=R.+Guimar%C3%A3es,+QD.+192+-+B,+LOTE+02+-+Araguatins,+TO,+77950-000,+Brazil",
 };
