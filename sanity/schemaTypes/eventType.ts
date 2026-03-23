@@ -41,6 +41,7 @@ export const eventType = defineType({
       name: "coverImage",
       title: "Foto de capa",
       type: "image",
+      description: "Opcional. Se não houver imagem, o card será exibido em formato textual.",
       options: { hotspot: true },
       fields: [
         defineField({
@@ -50,7 +51,6 @@ export const eventType = defineType({
           validation: (rule) => rule.required(),
         }),
       ],
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: "gallery",

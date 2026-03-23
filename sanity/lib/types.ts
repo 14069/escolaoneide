@@ -9,8 +9,8 @@ export interface EventSummary {
   eventDate: string;
   excerpt: string;
   location?: string;
-  coverImageUrl: string;
-  coverAlt: string;
+  coverImageUrl?: string | null;
+  coverAlt?: string | null;
   galleryCount: number;
   showOnHome: boolean;
 }

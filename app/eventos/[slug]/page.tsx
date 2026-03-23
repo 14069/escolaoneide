@@ -4,8 +4,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PortableCopy } from "@/components/portable-copy";
+import { ShareEventActions } from "@/components/share-event-actions";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { school } from "@/lib/school";
 import { formatEventDateLong } from "@/sanity/lib/format";
 import { getAllEventSlugs, getEventBySlug } from "@/sanity/lib/events";
 
@@ -15,6 +17,14 @@ type EventPageProps = {
 
 export const revalidate = 60;
 
+function normalizeRouteSlug(slug: string) {
+  try {
+    return decodeURIComponent(slug);
+  } catch {
+    return slug;
+  }
+}
+
 export async function generateStaticParams() {
   const slugs = await getAllEventSlugs();
   return slugs.map((slug) => ({ slug }));
@@ -22,7 +32,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: EventPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const event = await getEventBySlug(slug);
+  const event = await getEventBySlug(normalizeRouteSlug(slug));
 
   if (!event) {
     return {
@@ -38,7 +48,7 @@ export async function generateMetadata({ params }: EventPageProps): Promise<Meta
 
 export default async function EventDetailPage({ params }: EventPageProps) {
   const { slug } = await params;
-  const event = await getEventBySlug(slug);
+  const event = await getEventBySlug(normalizeRouteSlug(slug));
 
   if (!event) {
     notFound();
@@ -57,7 +67,7 @@ export default async function EventDetailPage({ params }: EventPageProps) {
           <div className="grid gap-10 lg:grid-cols-[1fr_0.9fr]">
             <div className="space-y-6">
               <span className="w-fit rounded-full bg-secondary-container px-4 py-1 text-xs font-bold uppercase tracking-[0.24em] text-on-secondary-container">
-                Evento publicado
+                Comunidade escolar
               </span>
               <h1 className="font-headline text-4xl font-extrabold tracking-tight text-primary lg:text-6xl">
                 {event.title}
@@ -78,16 +88,37 @@ export default async function EventDetailPage({ params }: EventPageProps) {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-[2rem] bg-surface-container-lowest shadow-soft">
-              <Image
-                alt={event.coverAlt}
-                className="h-full w-full object-cover"
-                height={900}
-                priority
-                src={event.coverImageUrl}
-                width={1400}
-              />
-            </div>
+            {event.coverImageUrl ? (
+              <div className="overflow-hidden rounded-[2rem] bg-surface-container-lowest shadow-soft">
+                <Image
+                  alt={event.coverAlt ?? event.title}
+                  className="h-full w-full object-cover"
+                  height={900}
+                  priority
+                  src={event.coverImageUrl}
+                  width={1400}
+                />
+              </div>
+            ) : (
+              <div className="hero-panel hero-orb relative overflow-hidden rounded-[2rem] p-8 text-on-primary shadow-soft lg:p-10">
+                <div className="relative z-10 flex h-full flex-col justify-between gap-8">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.24em] text-primary-fixed-dim">Publicação sem imagem de capa</p>
+                    <h2 className="mt-4 font-headline text-3xl font-extrabold text-white lg:text-4xl">{event.title}</h2>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="rounded-[1.5rem] bg-white/10 p-5 backdrop-blur">
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary-fixed-dim">Escola</p>
+                      <p className="mt-3 text-lg font-bold text-white">{school.name}</p>
+                    </div>
+                    <div className="rounded-[1.5rem] bg-white/10 p-5 backdrop-blur">
+                      <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary-fixed-dim">Localização</p>
+                      <p className="mt-3 text-sm leading-7 text-white">{school.city}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="mt-12 grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
@@ -113,10 +144,32 @@ export default async function EventDetailPage({ params }: EventPageProps) {
                     </div>
                   ) : null}
                   <div>
-                    <dt className="font-bold text-primary">Publicação</dt>
-                    <dd className="mt-1">Gerenciada pelo administrador do site via Sanity Studio.</dd>
+                    <dt className="font-bold text-primary">Escola</dt>
+                    <dd className="mt-1">{school.name}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-bold text-primary">Instagram</dt>
+                    <dd className="mt-1">
+                      <a className="font-bold text-primary hover:underline" href={school.instagramUrl} rel="noreferrer" target="_blank">
+                        {school.instagramHandle}
+                      </a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="font-bold text-primary">Endereço</dt>
+                    <dd className="mt-1">{school.address}</dd>
                   </div>
                 </dl>
+              </div>
+
+              <div className="rounded-[2rem] bg-surface-container p-8 shadow-soft">
+                <h2 className="font-headline text-2xl font-bold text-primary">Compartilhe este post</h2>
+                <p className="mt-4 text-sm leading-7 text-on-surface-variant">
+                  Envie este conteúdo para outras pessoas da comunidade escolar ou compartilhe nas redes sociais.
+                </p>
+                <div className="mt-6">
+                  <ShareEventActions title={event.title} />
+                </div>
               </div>
             </aside>
           </div>

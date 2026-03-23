@@ -24,8 +24,8 @@ export const sampleEvents: EventPost[] = [
     showOnHome: true,
     body: [],
     fallbackBody: [
-      "Este evento representa exatamente o fluxo que você pediu para o projeto: o administrador publica um post com capa, texto e galeria, e a home exibe o card automaticamente.",
-      "Na página interna, o visitante consegue ler mais sobre o acontecimento, ver as imagens adicionais e entender o contexto completo do evento realizado na escola.",
+      "A premiação reuniu estudantes, educadores e parceiros em um momento de valorização da escrita, da criatividade e do protagonismo estudantil.",
+      "Além do registro fotográfico, a atividade reforçou o compromisso da escola com iniciativas que estimulam leitura, produção textual e participação da comunidade escolar.",
     ],
     galleryUrls: [coverA, coverB, coverD],
   },
@@ -43,8 +43,8 @@ export const sampleEvents: EventPost[] = [
     showOnHome: true,
     body: [],
     fallbackBody: [
-      "A parceria com a Unitins foi um marco importante para aproximar a escola de práticas de pesquisa e produção acadêmica.",
-      "Neste modelo, o administrador pode registrar o evento, anexar fotos da atividade e destacar na home para que a comunidade acompanhe os resultados.",
+      "A parceria com a Unitins ampliou as possibilidades de pesquisa, leitura e produção acadêmica entre os estudantes da escola.",
+      "Com ações desse tipo, a comunidade acompanha mais de perto projetos formativos que fortalecem o ensino e incentivam novas trajetórias estudantis.",
     ],
     galleryUrls: [coverB, coverA, coverC],
   },
@@ -62,8 +62,8 @@ export const sampleEvents: EventPost[] = [
     showOnHome: true,
     body: [],
     fallbackBody: [
-      "O post de evento pode ser usado tanto para atividades internas quanto para reconhecimentos públicos recebidos pela escola e por seus estudantes.",
-      "Esse formato ajuda a construir memória institucional e a valorizar as conquistas da comunidade escolar.",
+      "O reconhecimento público das conquistas no esporte valoriza o empenho dos estudantes e destaca o trabalho desenvolvido dentro e fora da escola.",
+      "Registros como este ajudam a preservar a memória institucional e a celebrar resultados que inspiram toda a comunidade escolar.",
     ],
     galleryUrls: [coverC, coverB],
   },

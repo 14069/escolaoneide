@@ -47,10 +47,7 @@ function mapSanityEvent(doc: SanityEventDoc): EventPost {
     .map((image) => resolveImageUrl(image, 1600, 1200))
     .filter((value): value is string => Boolean(value));
 
-  const coverImageUrl =
-    resolveImageUrl(doc.coverImage, 1400, 900) ??
-    galleryUrls[0] ??
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuC-fc2eGu4cUGl0WQvzM-E5vJ7NdVLdH7iSEt_ZmCf7GedgU-t6MP8H0f6MLlRV6YfXjpjlp_Cgd7SJwvbbwD2zq2U8E7UB2WAQRBnU4ofU35Qs_U4QYGDWeqEuuk24rTatXduH3gVCjM73Hmi66wAm4mxB61Pulf2BHK18jVGaTku2e5t7o1Y9tegWAA6tyCFLidFf8lbU2XBO0IT_cCuWv443frBdYmRtbk10CAn9IRycwCyV4LP7fvdki6j9rCgr4avGseauUsA";
+  const coverImageUrl = resolveImageUrl(doc.coverImage, 1400, 900);
 
   return {
     _id: doc._id,
@@ -62,7 +59,7 @@ function mapSanityEvent(doc: SanityEventDoc): EventPost {
     body: doc.body ?? [],
     fallbackBody: [],
     coverImageUrl,
-    coverAlt: doc.coverAlt ?? doc.title,
+    coverAlt: coverImageUrl ? (doc.coverAlt ?? doc.title) : null,
     galleryUrls,
     galleryCount: doc.galleryCount ?? galleryUrls.length,
     showOnHome: doc.showOnHome ?? true,

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { school } from "@/lib/school";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -8,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | ETI Professora Oneide da Cruz Mousinho",
   },
   description:
-    "Site institucional com Next.js + Sanity para publicar eventos com capa, galeria e página interna completa.",
+    `Site oficial de eventos da ${school.name}, em ${school.city}, com comunicados, registros e atividades da comunidade escolar.`,
   metadataBase: new URL("http://localhost:3000"),
 };
 

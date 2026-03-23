@@ -3,12 +3,13 @@ import type { Metadata } from "next";
 import { EventCard } from "@/components/event-card";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { school } from "@/lib/school";
 import { hasSanityEnv } from "@/sanity/env";
 import { getAllEvents } from "@/sanity/lib/events";
 
 export const metadata: Metadata = {
   title: "Eventos",
-  description: "Arquivo completo dos eventos publicados no site.",
+  description: `Arquivo de eventos, atividades e registros da ${school.name}.`,
 };
 
 export const revalidate = 60;
@@ -27,11 +28,11 @@ export default async function EventsPage() {
               Arquivo de eventos
             </span>
             <h1 className="font-headline text-4xl font-extrabold tracking-tight text-primary lg:text-5xl">
-              Todos os posts publicados pelo administrador
+              Acompanhe as publicações da comunidade escolar
             </h1>
             <p className="text-lg leading-relaxed text-on-surface-variant">
-              Esta página lista todos os eventos cadastrados no painel. Cada item leva para uma página interna com capa,
-              conteúdo completo e galeria de fotos.
+              Esta página reúne eventos, projetos e registros publicados pela {school.name}. Cada item leva para uma
+              página interna com capa, conteúdo completo e galeria de fotos.
             </p>
           </div>
 
@@ -40,9 +41,8 @@ export default async function EventsPage() {
               <p className="text-sm font-bold uppercase tracking-[0.24em] text-secondary">Arquivo vazio</p>
               <h2 className="mt-3 font-headline text-2xl font-bold text-primary">Ainda não há eventos publicados</h2>
               <p className="mt-3 max-w-2xl text-sm leading-7">
-                A conexão com o Sanity está funcionando, mas o dataset ainda não tem nenhum documento do tipo{" "}
-                <code>event</code> publicado com slug. Depois da primeira publicação no Studio, os eventos passam a
-                ser listados aqui automaticamente.
+                Ainda não há publicações visíveis nesta seção. Quando a escola divulgar os próximos registros e
+                atividades, eles passarão a aparecer aqui automaticamente.
               </p>
             </div>
           ) : (
