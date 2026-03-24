@@ -118,6 +118,7 @@ export default async function EventDetailPage({ params }: EventPageProps) {
                         alt={event.coverAlt ?? event.title}
                         className="h-full w-full object-cover"
                         height={900}
+                        loading="eager"
                         priority
                         src={event.coverImageUrl}
                         width={1400}

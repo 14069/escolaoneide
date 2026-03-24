@@ -6,9 +6,10 @@ import type { EventSummary } from "@/sanity/lib/types";
 
 type EventCardProps = {
   event: EventSummary;
+  imageLoading?: "eager" | "lazy";
 };
 
-export function EventCard({ event }: EventCardProps) {
+export function EventCard({ event, imageLoading = "lazy" }: EventCardProps) {
   return (
     <article className="group relative overflow-hidden rounded-[1.9rem] border border-white/70 bg-surface-container-lowest shadow-soft transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_70px_rgba(0,17,58,0.14)] focus-within:-translate-y-1.5 focus-within:shadow-[0_28px_70px_rgba(0,17,58,0.14)]">
       <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,35,102,0.18),transparent)]" />
@@ -23,6 +24,8 @@ export function EventCard({ event }: EventCardProps) {
               alt={event.coverAlt ?? event.title}
               className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.05]"
               height={900}
+              loading={imageLoading}
+              sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
               src={event.coverImageUrl}
               width={1400}
             />

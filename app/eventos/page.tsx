@@ -90,8 +90,8 @@ export default async function EventsPage() {
             </div>
           ) : (
             <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
-              {events.map((event) => (
-                <EventCard event={event} key={event._id} />
+              {events.map((event, index) => (
+                <EventCard event={event} imageLoading={index === 0 ? "eager" : "lazy"} key={event._id} />
               ))}
             </div>
           )}
