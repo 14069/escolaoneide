@@ -1,18 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 type ShareEventActionsProps = {
   title: string;
 };
 
 export function ShareEventActions({ title }: ShareEventActionsProps) {
-  const [pageUrl, setPageUrl] = useState("");
   const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    setPageUrl(window.location.href);
-  }, []);
+  const copyStatusId = "share-copy-status";
+  const pageUrl = useSyncExternalStore(
+    () => () => {},
+    () => window.location.href,
+    () => "",
+  );
 
   useEffect(() => {
     if (!copied) {
@@ -41,7 +42,11 @@ export function ShareEventActions({ title }: ShareEventActionsProps) {
 
   return (
     <div className="space-y-4">
+      <p aria-live="polite" className="sr-only" id={copyStatusId}>
+        {copied ? "Link copiado para a área de transferência." : ""}
+      </p>
       <button
+        aria-describedby={copyStatusId}
         className="flex w-full flex-col gap-4 rounded-[1.4rem] border border-white/12 bg-white/10 px-5 py-5 text-left text-white shadow-[0_16px_34px_rgba(0,0,0,0.16)] transition duration-200 hover:-translate-y-0.5 hover:bg-white/14 sm:flex-row sm:items-center sm:justify-between"
         onClick={handleCopyLink}
         type="button"
@@ -60,6 +65,7 @@ export function ShareEventActions({ title }: ShareEventActionsProps) {
 
       <div className="grid gap-3 sm:grid-cols-3">
         <a
+          aria-label="Compartilhar este evento no WhatsApp (abre em nova aba)"
           className="flex min-h-28 flex-col justify-between rounded-[1.35rem] border border-white/12 bg-white/8 p-4 text-white transition duration-200 hover:-translate-y-0.5 hover:bg-white/12"
           href={`https://wa.me/?text=${encodedTitle}%20${encodedUrl}`}
           rel="noreferrer"
@@ -72,6 +78,7 @@ export function ShareEventActions({ title }: ShareEventActionsProps) {
           <span className="text-sm leading-6 text-white/70">Compartilhe com famílias, estudantes e equipe escolar.</span>
         </a>
         <a
+          aria-label="Compartilhar este evento no Facebook (abre em nova aba)"
           className="flex min-h-28 flex-col justify-between rounded-[1.35rem] border border-white/12 bg-white/8 p-4 text-white transition duration-200 hover:-translate-y-0.5 hover:bg-white/12"
           href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
           rel="noreferrer"
@@ -84,6 +91,7 @@ export function ShareEventActions({ title }: ShareEventActionsProps) {
           <span className="text-sm leading-6 text-white/70">Leve o post para páginas e grupos da comunidade.</span>
         </a>
         <a
+          aria-label="Compartilhar este evento no X (abre em nova aba)"
           className="flex min-h-28 flex-col justify-between rounded-[1.35rem] border border-white/12 bg-white/8 p-4 text-white transition duration-200 hover:-translate-y-0.5 hover:bg-white/12"
           href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
           rel="noreferrer"

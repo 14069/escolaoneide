@@ -15,7 +15,13 @@ export function SiteFooter() {
             Um portal pensado para valorizar projetos, registros e a identidade da comunidade escolar.
           </p>
         </div>
-        <a className="btn-secondary w-full sm:w-auto lg:inline-flex" href={school.instagramUrl} rel="noreferrer" target="_blank">
+        <a
+          aria-label="Seguir a escola no Instagram (abre em nova aba)"
+          className="btn-secondary w-full sm:w-auto lg:inline-flex"
+          href={school.instagramUrl}
+          rel="noreferrer"
+          target="_blank"
+        >
           Seguir no Instagram
         </a>
       </div>
@@ -32,7 +38,13 @@ export function SiteFooter() {
           <p className="mt-4 text-sm leading-7 text-on-surface-variant">
             {school.address}
           </p>
-          <a className="mt-4 inline-flex text-sm font-bold text-primary hover:underline" href={school.mapsUrl} rel="noreferrer" target="_blank">
+          <a
+            aria-label="Ver a localização da escola no mapa (abre em nova aba)"
+            className="mt-4 inline-flex text-sm font-bold text-primary hover:underline"
+            href={school.mapsUrl}
+            rel="noreferrer"
+            target="_blank"
+          >
             Ver no mapa
           </a>
         </div>
@@ -41,7 +53,13 @@ export function SiteFooter() {
           <p className="mt-4 text-sm leading-7 text-on-surface-variant">
             Acompanhe novidades, registros e comunicados da escola pelo Instagram oficial.
           </p>
-          <a className="mt-4 inline-flex text-sm font-bold text-primary hover:underline" href={school.instagramUrl} rel="noreferrer" target="_blank">
+          <a
+            aria-label="Abrir o Instagram oficial da escola (abre em nova aba)"
+            className="mt-4 inline-flex text-sm font-bold text-primary hover:underline"
+            href={school.instagramUrl}
+            rel="noreferrer"
+            target="_blank"
+          >
             {school.instagramHandle}
           </a>
         </div>

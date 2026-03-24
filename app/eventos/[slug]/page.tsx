@@ -69,7 +69,7 @@ export default async function EventDetailPage({ params }: EventPageProps) {
   return (
     <>
       <SiteHeader />
-      <main className="flex-1">
+      <main className="flex-1" id="conteudo-principal" tabIndex={-1}>
         <article className="mx-auto max-w-7xl px-6 py-10 lg:py-16">
           <div className="relative overflow-hidden rounded-[2.5rem] border border-white/60 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(242,245,248,0.84))] p-6 shadow-soft lg:p-8">
             <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,35,102,0.18),transparent)]" />
@@ -195,7 +195,13 @@ export default async function EventDetailPage({ params }: EventPageProps) {
                   <div>
                     <dt className="font-bold text-primary">Instagram</dt>
                     <dd className="mt-1">
-                      <a className="font-bold text-primary hover:underline" href={school.instagramUrl} rel="noreferrer" target="_blank">
+                      <a
+                        aria-label="Abrir o Instagram da escola (abre em nova aba)"
+                        className="font-bold text-primary hover:underline"
+                        href={school.instagramUrl}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
                         {school.instagramHandle}
                       </a>
                     </dd>
@@ -213,6 +219,7 @@ export default async function EventDetailPage({ params }: EventPageProps) {
                       Este evento também foi publicado no Instagram oficial e pode ser acessado pelo link abaixo.
                     </p>
                     <a
+                      aria-label="Abrir o post relacionado no Instagram (abre em nova aba)"
                       className="btn-secondary mt-5 w-full"
                       href={event.instagramPostUrl}
                       rel="noreferrer"
@@ -223,7 +230,13 @@ export default async function EventDetailPage({ params }: EventPageProps) {
                   </div>
                 ) : null}
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <a className="btn-secondary" href={school.mapsUrl} rel="noreferrer" target="_blank">
+                  <a
+                    aria-label="Ver a localização da escola no mapa (abre em nova aba)"
+                    className="btn-secondary"
+                    href={school.mapsUrl}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
                     Ver localização
                   </a>
                   <Link className="btn-secondary" href="/eventos">

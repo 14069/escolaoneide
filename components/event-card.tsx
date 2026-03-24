@@ -10,9 +10,13 @@ type EventCardProps = {
 
 export function EventCard({ event }: EventCardProps) {
   return (
-    <article className="group relative overflow-hidden rounded-[1.9rem] border border-white/70 bg-surface-container-lowest shadow-soft transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_70px_rgba(0,17,58,0.14)]">
+    <article className="group relative overflow-hidden rounded-[1.9rem] border border-white/70 bg-surface-container-lowest shadow-soft transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_28px_70px_rgba(0,17,58,0.14)] focus-within:-translate-y-1.5 focus-within:shadow-[0_28px_70px_rgba(0,17,58,0.14)]">
       <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,35,102,0.18),transparent)]" />
-      <Link className="flex h-full flex-col" href={`/eventos/${event.slug}`}>
+      <Link
+        aria-label={`Ler evento: ${event.title}`}
+        className="flex h-full flex-col rounded-[1.9rem]"
+        href={`/eventos/${event.slug}`}
+      >
         {event.coverImageUrl ? (
           <div className="relative h-72 w-full overflow-hidden">
             <Image

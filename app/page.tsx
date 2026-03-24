@@ -17,8 +17,8 @@ export default async function HomePage() {
   return (
     <>
       <SiteHeader />
-      <main className="flex-1">
-        <section className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10 lg:py-16">
+      <main className="flex-1" id="conteudo-principal" tabIndex={-1}>
+        <section aria-labelledby="home-hero-title" className="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-10 lg:py-16">
           <div className="relative overflow-hidden rounded-[2rem] border border-white/60 bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(248,249,251,0.84))] px-4 py-5 shadow-soft sm:rounded-[2.6rem] sm:px-6 sm:py-7 lg:px-8 lg:py-8">
             <div className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,rgba(0,35,102,0.18),transparent)]" />
             <div className="absolute -left-12 top-12 h-40 w-40 rounded-full bg-[rgba(252,212,0,0.18)] blur-3xl" />
@@ -30,7 +30,7 @@ export default async function HomePage() {
                   Escola Estadual de Tempo Integral
                 </span>
                 <div className="space-y-4">
-                  <h1 className="max-w-3xl text-balance font-headline text-[2.4rem] font-extrabold leading-[1.02] tracking-tight text-primary sm:text-5xl lg:text-6xl">
+                  <h1 className="max-w-3xl text-balance font-headline text-[2.4rem] font-extrabold leading-[1.02] tracking-tight text-primary sm:text-5xl lg:text-6xl" id="home-hero-title">
                     Acompanhe os eventos, projetos e registros da ETI Professora Oneide da Cruz Mousinho.
                   </h1>
                   <p className="max-w-2xl text-base leading-8 text-on-surface-variant sm:text-lg sm:leading-relaxed">
@@ -42,7 +42,13 @@ export default async function HomePage() {
                   <Link className="btn-primary w-full sm:w-auto" href="/eventos">
                     Ver eventos
                   </Link>
-                  <a className="btn-secondary w-full sm:w-auto" href={school.instagramUrl} rel="noreferrer" target="_blank">
+                  <a
+                    aria-label="Abrir o Instagram da escola (abre em nova aba)"
+                    className="btn-secondary w-full sm:w-auto"
+                    href={school.instagramUrl}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
                     Instagram da escola
                   </a>
                 </div>
@@ -122,11 +128,11 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:py-12">
+        <section aria-labelledby="home-eventos-title" className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:py-12">
           <div className="mb-8 flex flex-col gap-4 rounded-[1.8rem] border border-white/60 bg-white/72 p-5 shadow-[0_18px_45px_rgba(0,17,58,0.06)] backdrop-blur sm:rounded-[2rem] sm:p-6 lg:flex-row lg:items-end lg:justify-between lg:p-7">
             <div className="max-w-3xl">
               <p className="text-xs font-bold uppercase tracking-[0.24em] text-secondary">Eventos publicados</p>
-              <h2 className="mt-3 font-headline text-[2rem] font-extrabold text-primary sm:text-3xl lg:text-4xl">
+              <h2 className="mt-3 font-headline text-[2rem] font-extrabold text-primary sm:text-3xl lg:text-4xl" id="home-eventos-title">
                 A vida escolar em registros, atividades e conquistas
               </h2>
               <p className="mt-3 text-sm leading-7 text-on-surface-variant">
@@ -149,10 +155,22 @@ export default async function HomePage() {
                 seção. Em breve, os primeiros registros de atividades e projetos aparecerão aqui.
               </p>
               <div className="mt-6 flex flex-wrap gap-4">
-                <a className="btn-primary" href={school.instagramUrl} rel="noreferrer" target="_blank">
+                <a
+                  aria-label="Acompanhar a escola no Instagram (abre em nova aba)"
+                  className="btn-primary"
+                  href={school.instagramUrl}
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   Acompanhar no Instagram
                 </a>
-                <a className="btn-secondary" href={school.mapsUrl} rel="noreferrer" target="_blank">
+                <a
+                  aria-label="Ver a localização da escola no mapa (abre em nova aba)"
+                  className="btn-secondary"
+                  href={school.mapsUrl}
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   Ver localização
                 </a>
               </div>
@@ -166,11 +184,11 @@ export default async function HomePage() {
           )}
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6">
+        <section aria-labelledby="home-info-title" className="mx-auto max-w-7xl px-4 pb-16 pt-6 sm:px-6">
           <div className="grid gap-5 rounded-[2rem] bg-[linear-gradient(140deg,rgba(0,17,58,0.98),rgba(0,35,102,0.94))] p-5 text-on-primary shadow-[0_34px_90px_rgba(0,17,58,0.2)] sm:gap-6 sm:rounded-[2.4rem] sm:p-8 lg:grid-cols-[1.08fr_0.92fr] lg:p-10">
             <article className="rounded-[1.55rem] border border-white/10 bg-white/8 p-5 backdrop-blur sm:rounded-[1.9rem] sm:p-6">
               <p className="text-sm font-bold uppercase tracking-[0.2em] text-secondary-fixed">Informações da escola</p>
-              <h2 className="mt-3 font-headline text-[2rem] font-bold text-white sm:text-3xl">Onde estamos e como acompanhar</h2>
+              <h2 className="mt-3 font-headline text-[2rem] font-bold text-white sm:text-3xl" id="home-info-title">Onde estamos e como acompanhar</h2>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-primary-fixed-dim">
                 A {school.name} está localizada na {school.address}. Nesta página, a comunidade encontra publicações,
                 registros de atividades e notícias sobre o cotidiano escolar.
@@ -186,10 +204,22 @@ export default async function HomePage() {
                 </div>
               </div>
               <div className="mt-6 grid gap-3 sm:flex sm:flex-wrap sm:gap-4">
-                <a className="btn-secondary w-full sm:w-auto" href={school.mapsUrl} rel="noreferrer" target="_blank">
+                <a
+                  aria-label="Abrir a localização da escola no mapa (abre em nova aba)"
+                  className="btn-secondary w-full sm:w-auto"
+                  href={school.mapsUrl}
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   Abrir localização no mapa
                 </a>
-                <a className="btn-secondary w-full sm:w-auto" href={school.instagramUrl} rel="noreferrer" target="_blank">
+                <a
+                  aria-label="Visitar o Instagram da escola (abre em nova aba)"
+                  className="btn-secondary w-full sm:w-auto"
+                  href={school.instagramUrl}
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   Visitar {school.instagramHandle}
                 </a>
               </div>
