@@ -21,6 +21,8 @@ const DEFAULT_SETTINGS: AccessibilitySettings = {
   fontScale: "default",
   motion: "default",
 };
+let cachedSettingsSnapshot = DEFAULT_SETTINGS;
+let cachedSettingsRaw = "";
 
 const FONT_OPTIONS: Array<{ description: string; label: string; value: FontScale }> = [
   { description: "Tamanho padrão do site.", label: "A", value: "default" },
@@ -37,19 +39,32 @@ function readSettings(): AccessibilitySettings {
     const rawValue = window.localStorage.getItem(STORAGE_KEY);
 
     if (!rawValue) {
+      cachedSettingsRaw = "";
+      cachedSettingsSnapshot = DEFAULT_SETTINGS;
       return DEFAULT_SETTINGS;
+    }
+
+    if (rawValue === cachedSettingsRaw) {
+      return cachedSettingsSnapshot;
     }
 
     const parsedValue = JSON.parse(rawValue) as Partial<AccessibilitySettings>;
 
-    return {
+    const normalizedSettings: AccessibilitySettings = {
       contrast: parsedValue.contrast === "enabled" ? "enabled" : "default",
       focus: parsedValue.focus === "enabled" ? "enabled" : "default",
       fontScale:
         parsedValue.fontScale === "large" || parsedValue.fontScale === "xlarge" ? parsedValue.fontScale : "default",
       motion: parsedValue.motion === "enabled" ? "enabled" : "default",
     };
+
+    cachedSettingsRaw = rawValue;
+    cachedSettingsSnapshot = normalizedSettings;
+
+    return normalizedSettings;
   } catch {
+    cachedSettingsRaw = "";
+    cachedSettingsSnapshot = DEFAULT_SETTINGS;
     return DEFAULT_SETTINGS;
   }
 }
@@ -83,7 +98,11 @@ function writeSettings(nextSettings: AccessibilitySettings) {
     return;
   }
 
-  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(nextSettings));
+  const rawValue = JSON.stringify(nextSettings);
+
+  cachedSettingsRaw = rawValue;
+  cachedSettingsSnapshot = nextSettings;
+  window.localStorage.setItem(STORAGE_KEY, rawValue);
   window.dispatchEvent(new Event(STORE_EVENT));
 }
 
